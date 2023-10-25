@@ -1575,7 +1575,7 @@ static struct i2c_driver fts_i2c_driver = {
 		.name		= FTS_TS_DRV_NAME,
 		.of_match_table = fts_of_match_table,
 	},
-	.probe_new		= fts_probe,
+	.probe			= fts_probe,
 	.remove			= fts_remove,
 	.id_table		= fts_device_id,
 };

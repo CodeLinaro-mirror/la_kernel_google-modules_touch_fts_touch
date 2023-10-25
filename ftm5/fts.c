@@ -7199,7 +7199,7 @@ static struct i2c_driver fts_i2c_driver = {
 		.pm		= &fts_pm_ops,
 #endif
 	},
-	.probe_new		= fts_probe,
+	.probe			= fts_probe,
 	.remove			= fts_remove,
 	.id_table		= fts_device_id,
 };
