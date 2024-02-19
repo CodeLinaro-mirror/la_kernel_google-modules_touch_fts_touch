@@ -637,13 +637,13 @@ char *print_hex(const char *label, const u8 *buff, int count, u8 *result,
 		size_t result_sz)
 {
 	int i;
-	size_t offset;
+	ssize_t offset;
 
-	offset = strlcpy(result, label, result_sz);
-	if (offset >= result_sz)
+	offset = strscpy(result, label, result_sz);
+	if (offset == -E2BIG)
 		return result;
 
-	result_sz -= offset;
+	result_sz -= (size_t) offset;
 	for (i = 0; i < count; i++) {
 		/* this append automatically a null terminator char */
 		int n = snprintf(&result[offset], result_sz,
@@ -651,7 +651,7 @@ char *print_hex(const char *label, const u8 *buff, int count, u8 *result,
 		if (n < 0 || n >= result_sz)
 			/* error or truncated */
 			return result;
-		offset += (unsigned int) n;
+		offset += n;
 		result_sz -= (unsigned int) n;
 	}
 	return result;
