@@ -502,7 +502,7 @@ int fts_hdm_write_request(u8 save_to_flash);
 int fts_request_hdm(u8 type);
 int fts_fw_request(u16 address, u8 bit_to_set, u8 auto_clear,
 	int time_to_wait);
-char *print_hex(char *label, u8 *buff, int count, u8 *result);
+char *print_hex(const char *label, const u8 *buff, int count, u8 *result);
 int poll_for_event(int *event_to_search, int event_bytes,
 	u8 *read_data, int time_to_wait);
 int fts_write_fw_reg(u16 address, u8 *data, uint32_t length);

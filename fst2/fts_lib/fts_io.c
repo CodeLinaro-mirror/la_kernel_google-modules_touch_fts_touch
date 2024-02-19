@@ -629,7 +629,7 @@ int poll_for_event(int *event_to_search, int event_bytes, u8 *read_data,
   * @param result data pointer to print the combined message
   */
 
-char *print_hex(char *label, u8 *buff, int count, u8 *result)
+char *print_hex(const char *label, const u8 *buff, int count, u8 *result)
 {
 	int i, offset;
 
