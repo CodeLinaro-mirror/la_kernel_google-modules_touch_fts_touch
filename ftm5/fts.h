@@ -69,10 +69,10 @@
 
 /* #define DEBUG */	/* /< define to print more logs in the kernel log
 			 * and better follow the code flow */
-#ifdef pr_fmt
 #undef pr_fmt
-#define pr_fmt(fmt) "[ FTS ] " fmt
-#endif
+#define pr_fmt(fmt) "gtd: fts: " fmt
+#undef dev_fmt
+#define dev_fmt(fmt) "gtd: " fmt
 
 #define PINCTRL_STATE_ACTIVE    "pmx_ts_active"
 #define PINCTRL_STATE_SUSPEND   "pmx_ts_suspend"
@@ -339,6 +339,11 @@ enum {
 	FTS_BUS_REF_SYSFS		= 0x08,
 	FTS_BUS_REF_FORCE_ACTIVE	= 0x10,
 	FTS_BUS_REF_BUGREPORT		= 0x20,
+};
+
+enum fts_display_state : u32 {
+	FTS_DISPLAY_STATE_OFF = 0,
+	FTS_DISPLAY_STATE_ON,
 };
 
 /* Motion filter finite state machine (FSM) states
@@ -886,6 +891,7 @@ struct fts_ts_info {
 #ifdef DYNAMIC_REFRESH_RATE
 	int display_refresh_rate;	/* Display rate in Hz */
 #endif
+	enum fts_display_state display_state;	/* Display state */
 	bool sensor_sleep;		/* True if suspend called */
 	struct wakeup_source *wakesrc;	/* Wake Lock struct */
 
