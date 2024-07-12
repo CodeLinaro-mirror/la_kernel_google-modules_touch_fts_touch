@@ -6815,6 +6815,7 @@ static int fts_probe(struct spi_device *client)
 
 	/* Assume screen is on throughout probe */
 	info->bus_refmask = FTS_BUS_REF_SCREEN_ON;
+	info->display_state = FTS_DISPLAY_STATE_ON;
 
 #ifdef GESTURE_MODE
 	mutex_init(&gestureMask_mutex);
